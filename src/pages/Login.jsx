@@ -86,7 +86,9 @@ function Login() {
           >
             Login
           </button>
-          {error && <p className="text-red-500 text-[12px] lg:text-[16px]">{error}</p>}
+          {error && (
+            <p className="text-red-500 text-[12px] lg:text-[16px]">{error}</p>
+          )}
           <p className="text-[12px] lg:text-[16px] xl:text-base font-normal">
             Don't have account?{" "}
             <a
@@ -99,7 +101,11 @@ function Login() {
         </div>
       </div>
       <div className="gambar flex items-center justify-center w-[50vw] h-screen bg-cyan-300 hidden lg:flex mx-auto">
-        <img className="lg:w-[40vw] xl:w-[40vw] flex items-center justify-center bg-cyan-300 hidden lg:flex mx-auto" src={loginImage} alt="" />
+        <img
+          className="lg:w-[40vw] xl:w-[40vw] flex items-center justify-center bg-cyan-300 hidden lg:flex mx-auto"
+          src={loginImage}
+          alt=""
+        />
       </div>
     </div>
   );
