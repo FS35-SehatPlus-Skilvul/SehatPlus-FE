@@ -9,9 +9,11 @@ function KalkulatorBMI() {
     const [status, setStatus] = useState('');
 
     useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    }, []);
+        AOS.init({
+          duration: 1000,
+          offset: -200,
+        });
+      }, []);
 
     const calculateBMI = () => {
         const weightInKg = parseFloat(weight);
