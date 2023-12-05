@@ -12,6 +12,10 @@ import LandingPage from "./pages/LandingPage";
 import ErrorPage from "./pages/ErrorPage"
 import Article from "./pages/ArticleLanding";
 import BMI from "./pages/KalkulatorBMI";
+import PilihJadwalDokter from "./pages/PilihJadwalDokter";
+import KonfirmasiJanjiTemu from "./pages/KonfirmasiJanjiTemu";
+import BookingSuccesfull from "./pages/BookingSuccesfull";
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,8 +34,10 @@ function App() {
         <Route path="forget-password" element={<ForgetPassword />} />
         <Route path="reset-password" element={<ResetPassword />} />
         <Route path="reset-succesfully" element={<ResetSuccesfully />} />
+        <Route path="/pilih-jadwal-dokter" element={<PilihJadwalDokter />} />
+        <Route path="/konfirmasi-janji-temu" element={<KonfirmasiJanjiTemu />} />
+        <Route path="/booking-succesfull" element={<BookingSuccesfull />} />
       </Routes>
-
     </>
   );
 }
