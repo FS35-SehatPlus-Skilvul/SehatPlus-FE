@@ -33,7 +33,7 @@ function Login() {
 
         // Redirect sesuai dengan role
         if (role === "pasien") {
-          navigate("/dashboard-pasien");
+          navigate("/");
         } else if (role === "dokter") {
           navigate("/dashboard-dokter");
         } else if (role === "admin") {

@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 
 function Footer() {
+    useEffect(() => {
+        AOS.init({
+          offset: -200,
+        });
+      }, []);
     return (
         <footer className="bg-[#F9FBFD] dark:bg-gray-900">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
