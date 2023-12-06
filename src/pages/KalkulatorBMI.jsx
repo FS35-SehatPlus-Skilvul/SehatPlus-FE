@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import Footer from "../components/Footer";
+import React, { useState } from "react";
+
 function KalkulatorBMI() {
     const [weight, setWeight] = useState('');
     const [height, setHeight] = useState('');
     const [bmi, setBMI] = useState(null);
     const [status, setStatus] = useState('');
-
-    useEffect(() => {
-        AOS.init({
-          duration: 1000,
-          offset: -200,
-        });
-      }, []);
 
     const calculateBMI = () => {
         const weightInKg = parseFloat(weight);

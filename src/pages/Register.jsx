@@ -1,28 +1,19 @@
-import React from "react";
-import { FcGoogle } from "react-icons/fc";
+import React, { useState } from "react";
 import loginImage from "../assets/Login-image.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import axios from "axios";
 
 function Register() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleRegisterClick = async () => {
     // Validasi input
-    if (!email || !password || !confirmPassword) {
+    if (!username || !password || !confirmPassword) {
       setError("Semua field harus diisi");
-      return;
-    }
-  
-    // Validasi format email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setError("Format email tidak valid");
       return;
     }
   
@@ -39,20 +30,20 @@ function Register() {
     }
   
     try {
-      // Cek apakah email sudah terdaftar
-      const checkEmailResponse = await axios.get(
-        `https://65632a51ee04015769a6dd6e.mockapi.io/user/users?email=${email}`
+      // Cek apakah username sudah terdaftar
+      const checkUsernameResponse = await axios.get(
+        `https://65632a51ee04015769a6dd6e.mockapi.io/user/users?username=${username}`
       );
   
-      if (checkEmailResponse.data.length > 0) {
-        setError("Email sudah terdaftar. Gunakan email lain atau coba Login.");
+      if (checkUsernameResponse.data.length > 0) {
+        setError("Username sudah terdaftar. Gunakan username lain atau coba Login.");
         return;
       }
   
       // Kirim data registrasi ke API
       const registerResponse = await axios.post(
         "https://65632a51ee04015769a6dd6e.mockapi.io/user/users",
-        { email, password }
+        { username, password, role: "pasien" } // Tentukan role sesuai kebutuhan
       );
   
       // Handle respons dari API sesuai kebutuhan
@@ -76,10 +67,10 @@ function Register() {
           <input
             className="w-[260px] h-[40px] lg:w-[408px] lg:h-[66px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
             type="text"
-            placeholder="Email"
-            value={email}
+            placeholder="Username"
+            value={username}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setUsername(e.target.value);
               setError("");
             }}
           />
@@ -112,12 +103,12 @@ function Register() {
           {error && <p className="text-red-500 text-[12px] lg:text-[16px]">{error}</p>}
           <p className="text-[12px] lg:text-base font-normal">
             Already have an account?{" "}
-            <a
-              href="login"
+            <Link
+              to="/login"
               className="text-violet-950 text-[12px] lg:text-[16px] xl:text-base font-normal underline leading-tight"
             >
               Login
-            </a>
+            </Link>
           </p>
         </div>
       </div>
