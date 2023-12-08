@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import loginImage from "../assets/Login-image.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext"; // Sesuaikan dengan lokasi penyimpanan AuthContext
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+  const { user, isAuthenticated, login, logout } = useContext(AuthContext);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLoginClick = async () => {
     // Validasi input
-    if (!username || !password) {
-      setError("Username dan password tidak boleh kosong");
+    if (!email || !password) {
+      setError("Email dan password tidak boleh kosong");
       return;
     }
 
@@ -24,7 +26,7 @@ function Login() {
       const users = response.data;
 
       const user = users.find(
-        (u) => u.username === username && u.password === password
+        (u) => u.email === email && u.password === password
       );
 
       if (user) {
@@ -39,8 +41,11 @@ function Login() {
         } else if (role === "admin") {
           navigate("/dashboard-admin");
         }
+
+        // Setelah login, panggil fungsi login dari AuthContext
+        login(user);
       } else {
-        setError("Username atau password salah. Coba lagi.");
+        setError("Email atau password salah. Coba lagi.");
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -57,11 +62,11 @@ function Login() {
         <div className="flex flex-col gap-4 lg:gap-6 xl:gap-8 items-center">
           <input
             className="w-[260px] h-[40px] lg:w-[408px] lg:h-[66px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
-            type="text"
-            placeholder="Username"
-            value={username}
+            type="email"
+            placeholder="Email"
+            value={email}
             onChange={(e) => {
-              setUsername(e.target.value);
+              setEmail(e.target.value);
               setError("");
             }}
           />

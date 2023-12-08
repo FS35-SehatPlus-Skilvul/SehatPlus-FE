@@ -20,7 +20,9 @@ import Article from "./pages/ArticleLanding";
 import BMI from "./pages/KalkulatorBMI";
 import PilihJadwalDokter from "./pages/PilihJadwalDokter";
 import KonfirmasiJanjiTemu from "./pages/KonfirmasiJanjiTemu";
-import BookingSuccessfully from "./pages/BookingSuccesfull"
+import BookingSuccessfully from "./pages/BookingSuccesfull";
+import Spesialisasi from "./pages/Spesialisasi";
+import DaftarDokter from "./pages/DaftarDokter";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -35,6 +37,9 @@ function App() {
           <Route path="/pilih-jadwal-dokter" element={<PilihJadwalDokter />} />
           <Route path="/konfirmasi-janji-temu" element={<KonfirmasiJanjiTemu />} />
           <Route path="/booking-succesfull" element={<BookingSuccessfully />} />
+          <Route path="/spesialisasi" element={<Spesialisasi />} />
+          <Route path="/daftar-dokter" element={<DaftarDokter />} />
+          
         </Route>
         {/* HANDLE ROUTE LOGIN & REGISTER */}
         <Route path="login" element={<Login />} />

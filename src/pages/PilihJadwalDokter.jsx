@@ -32,8 +32,8 @@ const DateTimePicker = () => {
       <div className="flex flex-col justify-center  w-[70vw] h-[70vh] md:w-[60vw] md:h-[60vh] lg:w-[60vw] lg:h-[50vh] xl:w-[40vw] xl:h-[50vh] bg-blue-100 rounded-xl px-5">
         <div className="text-zinc-700 text-sm md:text-[14px] lg:text-lg xl:text-xl font-normal mb-8">
           <div className="flex flex-col justify-center mb-2 w-full h-[60px] lg:h-[80px] xl:h-[120px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg">
-            <p>dr. Syahid Mulkan, Sp.OG</p>
-            <p>Spesialis Kandungan</p>
+            <p>dr. Alfaz Ahmed, Sp. A</p>
+            <p>Spesialis Anak</p>
           </div>
           <label
             name="tanggal"
@@ -87,7 +87,7 @@ const DateTimePicker = () => {
             <Link to="/konfirmasi-janji-temu">Selanjutnya</Link>
           </button>
           <button className="w-full py-3 md:w-full lg:w-full xl:w-full border-violet-950 text-violet-950 border-[1px] rounded-[5px] text-[12px] lg:text-[16px] xl:text-base hover:bg-red-500 hover:text-white transition duration-500 hover:border-white">
-            <Link to="#">Batal</Link>
+            <Link to="/daftar-dokter">Batal</Link>
           </button>
         </div>
       </div>

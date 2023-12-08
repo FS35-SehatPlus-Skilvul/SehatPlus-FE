@@ -79,7 +79,7 @@ function Navbar() {
               {isAuthenticated && user.role === 'pasien' && (
                 <li>
                   <Link
-                    to="/konsultasi"
+                    to="/spesialisasi"
                     className={`font-bold ${location.pathname === "/konsultasi"
                       ? "text-blue-700"
                       : "text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500"
