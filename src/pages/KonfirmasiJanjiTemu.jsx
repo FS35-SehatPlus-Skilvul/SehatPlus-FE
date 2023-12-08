@@ -29,7 +29,7 @@ function KonfirmasiJanjiTemu() {
           <input
             className="mb-2 w-full h-[40px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200     px-4 text-[12px] lg:text-[16px] xl:text-lg"
             type="text"
-            value={"04 Desember 2023"}
+            value={"08 Desember 2023"}
             disabled
           />
           <label
@@ -41,7 +41,7 @@ function KonfirmasiJanjiTemu() {
           <input
             className="mb-2 w-full h-[40px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg"
             type="text"
-            value={"09.00 WITA"}
+            value={"08.00 AM"}
             disabled
           />
           <label
@@ -53,7 +53,7 @@ function KonfirmasiJanjiTemu() {
           <input
             className="mb-2 w-full h-[40px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg"
             type="text"
-            value={"dr. Syahid Mulkan, Sp.OG"}
+            value={"dr. Alfaz Ahmed, Sp. A"}
             disabled
           />
         </div>
