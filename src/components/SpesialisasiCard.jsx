@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SpesialisasiCard = ({ specialization, imageSrc }) => {
+const SpesialisasiCard = ({ spesialisasi, img }) => {
+
   return (
-    <Link to={'/daftar-dokter'}>
-      <div
-        onClick="#"
-        className="max-w-md w-[18vw] mx-auto bg-blue-100 rounded-xl overflow-hidden shadow-md mb-10"
-      >
-        <img className="object-full w-full h-48" src={imageSrc} alt={name} />
+    <Link to={`/spesialisasi/${spesialisasi.toLowerCase()}`}>
+      <div className="max-w-md w-[80vw] md:w-[25vw] lg:w-[18vw] mx-auto bg-blue-100 rounded-xl overflow-hidden shadow-md mb-10">
+        <img className="object-cover w-full h-48" src={img} alt={spesialisasi} />
         <div className="p-6">
-          <p className="text-gray-700 font-bold text-base">{specialization}</p>
+          <p className="text-gray-700 font-bold text-base">{spesialisasi}</p>
         </div>
       </div>
     </Link>

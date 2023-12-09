@@ -1,7 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { format } from "date-fns";
+import axios from "axios";
 
-function KonfirmasiJanjiTemu() {
+const KonfirmasiJanjiTemu = () => {
+  const navigate = useNavigate();
+  // State untuk menyimpan data dari local storage
+  const [selectedData, setSelectedData] = useState({
+    tanggal: "",
+    jam: "",
+    namaDokter: "",
+  });
+
+  useEffect(() => {
+    // Ambil data dari local storage
+    const storedData = localStorage.getItem("selectedData");
+
+    // Parse data dari string JSON ke objek
+    if (storedData) {
+      const parsedData = JSON.parse(storedData);
+
+      // Set state dengan data dari local storage
+      setSelectedData({
+        tanggal: format(new Date(parsedData.tanggal), "dd-MM-yyyy"),
+        jam: parsedData.jadwal,
+        namaDokter: parsedData.dokter.nama,
+      });
+    }
+  }, []);
+
+  const handleConfirmation = async () => {
+    try {
+      // Kirim data ke API
+      const response = await axios.post(
+        "https://65734dfd192318b7db41e6a4.mockapi.io/booking",
+        {
+          dokter: selectedData.namaDokter,
+          tanggal: selectedData.tanggal,
+          jam: selectedData.jam,
+          // ... tambahkan data lain yang perlu disimpan
+        }
+      );
+
+      // Tampilkan respons API di konsol
+      console.log(response.data);
+
+      // Jika berhasil, Anda dapat membersihkan local storage atau melakukan aksi lain
+      localStorage.removeItem("selectedData");
+    } catch (error) {
+      console.error("Error confirming appointment:", error);
+    }
+  };
+
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center h-[92vh] gap-4">
       <div className="flex flex-col items-center justify-center sm:gap-2 xl:gap-4">
@@ -29,7 +83,7 @@ function KonfirmasiJanjiTemu() {
           <input
             className="mb-2 w-full h-[40px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200     px-4 text-[12px] lg:text-[16px] xl:text-lg"
             type="text"
-            value={"08 Desember 2023"}
+            value={selectedData.tanggal}
             disabled
           />
           <label
@@ -41,7 +95,7 @@ function KonfirmasiJanjiTemu() {
           <input
             className="mb-2 w-full h-[40px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg"
             type="text"
-            value={"08.00 AM"}
+            value={selectedData.jam}
             disabled
           />
           <label
@@ -53,16 +107,22 @@ function KonfirmasiJanjiTemu() {
           <input
             className="mb-2 w-full h-[40px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg"
             type="text"
-            value={"dr. Alfaz Ahmed, Sp. A"}
+            value={selectedData.namaDokter}
             disabled
           />
         </div>
         <div className="flex flex-col md:flex-row-reverse gap-2">
-          <button className="w-full py-3 md:w-full lg:w-full xl:w-full bg-violet-950 rounded-[5px] text-[12px] lg:text-[16px] xl:text-base text-white">
-          <Link to="/booking-succesfull">Konfirmasi</Link>
+          <button
+            onClick={handleConfirmation}
+            className="w-full py-3 md:w-full lg:w-full xl:w-full bg-violet-950 rounded-[5px] text-[12px] lg:text-[16px] xl:text-base text-white"
+          >
+            <Link to="/booking-succesfull">Konfirmasi</Link>
           </button>
-          <button className="w-full py-3 md:w-full lg:w-full xl:w-full border-violet-950 text-violet-950 border-[1px] rounded-[5px] text-[12px] lg:text-[16px] xl:text-base hover:bg-red-500 hover:text-white transition duration-500 hover:border-white">
-            <Link to="/pilih-jadwal-dokter">Batal</Link>
+          <button
+            onClick={handleCancel}
+            className="w-full py-3 md:w-full lg:w-full xl:w-full border-violet-950 text-violet-950 border-[1px] rounded-[5px] text-[12px] lg:text-[16px] xl:text-base hover:bg-red-500 hover:text-white transition duration-500 hover:border-white"
+          >
+            Batal
           </button>
         </div>
       </div>

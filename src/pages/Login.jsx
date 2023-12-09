@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { FcGoogle } from "react-icons/fc";
 import loginImage from "../assets/Login-image.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
