@@ -59,7 +59,7 @@ function Register() {
       // Kirim data registrasi ke API
       const registerResponse = await axios.post(
         "https://65632a51ee04015769a6dd6e.mockapi.io/user/users",
-        { email, password, role: "pasien" } // Sesuaikan dengan kebutuhan
+        { email, password, nama, alamat, noTelepon, gender, role: "pasien" } // Sesuaikan dengan kebutuhan
       );
 
       // Handle respons dari API sesuai kebutuhan
