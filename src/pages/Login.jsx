@@ -11,7 +11,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleLoginClick = async () => {
+  const handleLoginClickPasien = async () => {
     // Validasi input
     if (!email || !password) {
       setError("Email dan password tidak boleh kosong");
@@ -30,19 +30,66 @@ function Login() {
 
       if (user) {
         // Cek role
-        const role = user.role;
+        // const role = user.role;
 
-        // Redirect sesuai dengan role
-        if (role === "pasien") {
-          navigate("/");
-        } else if (role === "dokter") {
-          navigate("/dashboard-dokter");
-        } else if (role === "admin") {
-          navigate("/dashboard-admin");
-        }
+        // // Redirect sesuai dengan role
+        // if (role === "pasien") {
+        //   navigate("/");
+        // } else if (role === "dokter") {
+        //   navigate("/dashboard-dokter");
+        // } else if (role === "admin") {
+        //   navigate("/dashboard-admin");
+        // }
+
+        navigate("/");
 
         // Setelah login, panggil fungsi login dari AuthContext
         login(user);
+      } else {
+        setError("Email atau password salah. Coba lagi.");
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setError("Terjadi kesalahan. Coba lagi.");
+    }
+  };
+
+  const handleLoginClickDokter = async () => {
+    // Validasi input
+    if (!email || !password) {
+      setError("Email dan password tidak boleh kosong");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        "https://65734dfd192318b7db41e6a4.mockapi.io/dokter"
+      );
+      const users = response.data;
+
+      const user = users.find(
+        (u) => u.email === email && u.password === password
+      );
+
+      if (user) {
+        // Cek role
+        // const role = user.role;
+
+        // // Redirect sesuai dengan role
+        // if (role === "pasien") {
+        //   navigate("/");
+        // } else if (role === "dokter") {
+        //   navigate("/dashboard-dokter");
+        // } else if (role === "admin") {
+        //   navigate("/dashboard-admin");
+        // }
+        navigate("/dokter-dashboard");
+
+        // Setelah login, panggil fungsi login dari AuthContext
+        login(user);
+        localStorage.setItem("userId", user.id);
+        localStorage.setItem("userName", user.nama);
+        console.log(localStorage);
       } else {
         setError("Email atau password salah. Coba lagi.");
       }
@@ -87,9 +134,15 @@ function Login() {
           </a>
           <button
             className="w-[260px] h-[40px] lg:w-[408px] lg:h-[66px] bg-violet-950 rounded-[5px] text-[12px] lg:text-[16px] xl:text-base text-white"
-            onClick={handleLoginClick}
+            onClick={handleLoginClickPasien}
           >
-            Login
+            Login Sebagai Pasien
+          </button>
+          <button
+            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[66px] border-2 border-violet-950 rounded-[5px] text-[12px] lg:text-[16px] xl:text-base text-violet-950"
+            onClick={handleLoginClickDokter}
+          >
+            Login Sebagai Dokter
           </button>
           {error && (
             <p className="text-red-500 text-[12px] lg:text-[16px]">{error}</p>

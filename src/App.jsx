@@ -7,6 +7,9 @@ import { AuthContext } from "./context/AuthContext";
 
 // IMPORT COMPONENT
 import Layout from "./components/Layout";
+import LayoutAdmin from "./components/LayoutAdmin";
+import LayoutDokter from "./components/LayoutDokter";
+
 
 // IMPORT PAGES
 import Login from "./pages/Login";
@@ -25,6 +28,11 @@ import Spesialisasi from "./pages/Spesialisasi";
 import DaftarDokter from "./pages/DaftarDokter";
 import ArticleContent from "./pages/ArticleContent";
 import DokterPage from "./pages/DokterPage";
+import Admin from "./pages/Admin";
+import AdminDokter from "./pages/AdminDokter";
+import AdminPasien from "./pages/AdminPasien";
+import AdminBooking from "./pages/AdminBooking";
+import AdminArtikel from "./pages/AdminArtikel";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -38,16 +46,47 @@ function App() {
         <Route path="/kalkulator-bmi" element={<BMI />} />
         <Route path="/artikel/:id" element={<ArticleContent />} />
 
-        <Route path="/spesialisasi" element={isAuthenticated == false ? (<Navigate to="/login" />) : (<Spesialisasi />)} />
+        <Route
+          path="/spesialisasi"
+          element={
+            isAuthenticated == false ? (
+              <Navigate to="/login" />
+            ) : (
+              <Spesialisasi />
+            )
+          }
+        />
 
         <Route
           path="/konfirmasi-janji-temu"
           element={<KonfirmasiJanjiTemu />}
         />
         <Route path="/booking-succesfull" element={<BookingSuccessfully />} />
-        <Route path="/pilih-jadwal-dokter/:id" element={<PilihJadwalDokter />} />
+        <Route
+          path="/pilih-jadwal-dokter/:id"
+          element={<PilihJadwalDokter />}
+        />
         <Route path="/spesialisasi/:spesialisasi" element={<DaftarDokter />} />
-        <Route path="/dokter-dashboard" element={<DokterPage />} />
+      </Route>
+
+      <Route
+        path="/admin-dashboard/*"
+        element={<LayoutAdmin />}
+        errorElement={<ErrorPage />}
+      >
+        <Route index element={<Admin />} />
+        <Route path="data-dokter" element={<AdminDokter />} />
+        <Route path="data-pasien" element={<AdminPasien />} />
+        <Route path="data-booking" element={<AdminBooking />} />
+        <Route path="data-artikel" element={<AdminArtikel />} />
+      </Route>
+
+      <Route
+        path="/dokter-dashboard/*"
+        element={<LayoutDokter />}
+        errorElement={<ErrorPage />}
+      >
+        <Route index element={<DokterPage />} />
       </Route>
 
       {/* HANDLE ROUTE LOGIN & REGISTER */}

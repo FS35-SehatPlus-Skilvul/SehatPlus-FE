@@ -9,6 +9,10 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [alamat, setAlamat] = useState("");
+  const [nama, setNama] = useState("")
+  const [noTelepon, setNoTelepon] = useState("");
+  const [gender, setGender] = useState("");
 
   const isEmailValid = (email) => {
     // Ekspresi reguler untuk memeriksa format email
@@ -77,7 +81,17 @@ function Register() {
         </div>
         <div className="flex flex-col gap-4 lg:gap-6 xl:gap-8 items-center">
           <input
-            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[66px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
+            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
+            type="text"
+            placeholder="Nama Lengkap"
+            value={nama}
+            onChange={(e) => {
+              setNama(e.target.value);
+              setError("");
+            }}
+          />
+          <input
+            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
             type="email"
             placeholder="Email"
             value={email}
@@ -87,7 +101,7 @@ function Register() {
             }}
           />
           <input
-            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[66px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
+            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
             type="password"
             placeholder="Create Password"
             value={password}
@@ -97,7 +111,7 @@ function Register() {
             }}
           />
           <input
-            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[66px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
+            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
@@ -106,6 +120,41 @@ function Register() {
               setError("");
             }}
           />
+          {/* New input fields */}
+          <input
+            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
+            type="text"
+            placeholder="Alamat"
+            value={alamat}
+            onChange={(e) => {
+              setAlamat(e.target.value);
+              setError("");
+            }}
+          />
+          <input
+            className="w-[260px] h-[40px] lg:w-[408px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
+            type="tel"
+            placeholder="No Telepon"
+            value={noTelepon}
+            onChange={(e) => {
+              setNoTelepon(e.target.value);
+              setError("");
+            }}
+          />
+          <div className="flex items-center gap-2">
+            <select
+              className="w-[260px] h-[40px] lg:w-[408px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-300 px-4 text-[12px] lg:text-[16px] xl:text-base"
+              value={gender}
+              placeholder="Jenis Kelamin"
+              onChange={(e) => {
+                setGender(e.target.value);
+                setError("");
+              }}
+            >
+              <option value="male">Laki-Laki</option>
+              <option value="female">Perempuan</option>
+            </select>
+          </div>
           <button
             className="w-[260px] h-[40px] lg:w-[408px] lg:h-[66px] bg-violet-950 rounded-[5px] text-[12px] lg:text-[16px] xl:text-base text-white"
             onClick={handleRegisterClick}

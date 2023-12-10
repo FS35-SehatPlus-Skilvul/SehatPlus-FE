@@ -10,6 +10,7 @@ const KonfirmasiJanjiTemu = () => {
     tanggal: "",
     jam: "",
     namaDokter: "",
+    nama: "",
   });
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const KonfirmasiJanjiTemu = () => {
         tanggal: format(new Date(parsedData.tanggal), "dd-MM-yyyy"),
         jam: parsedData.jadwal,
         namaDokter: parsedData.dokter.nama,
+        nama: parsedData.nama,
       });
     }
   }, []);
@@ -38,6 +40,7 @@ const KonfirmasiJanjiTemu = () => {
           dokter: selectedData.namaDokter,
           tanggal: selectedData.tanggal,
           jam: selectedData.jam,
+          nama: selectedData.nama,
           // ... tambahkan data lain yang perlu disimpan
         }
       );
@@ -67,13 +70,25 @@ const KonfirmasiJanjiTemu = () => {
         </p>
       </div>
       <div
-        className="flex flex-col justify-center  w-[70vw] h-[70vh] md:w-[60vw] md:h-[60vh] lg:w-[50vw] lg:h-[50vh] xl:w-[
-        40vw] xl:h-[50vh] bg-blue-100 rounded-xl px-5"
+        className="flex flex-col justify-center  w-[70vw] h-[75vh] md:w-[60vw] md:h-[65vh] lg:w-[50vw] lg:h-[55vh] xl:w-[
+        40vw] xl:h-[55vh] bg-blue-100 rounded-xl px-5"
       >
         <div className="text-gray-700 text-sm md:text-md lg:text-xl xl:text-2xl font-bold">
           Jadwal Anda :
         </div>
         <div className="text-zinc-700 text-sm md:text-[14px] lg:text-lg xl:text-xl font-normal mb-8">
+          <label
+            name="nama"
+            className="flex items-center space-x-2 text-sm md:text-md lg:text-lg mb-1"
+          >
+            Nama Pasien
+          </label>
+          <input
+            className="mb-2 w-full h-[40px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg"
+            type="text"
+            value={selectedData.nama}
+            disabled
+          />
           <label
             name="tanggal"
             className="flex items-center space-x-2 text-sm md:text-md lg:text-lg mb-1"
@@ -128,6 +143,6 @@ const KonfirmasiJanjiTemu = () => {
       </div>
     </div>
   );
-}
+};
 
 export default KonfirmasiJanjiTemu;

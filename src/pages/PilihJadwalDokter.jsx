@@ -12,6 +12,7 @@ const PilihJadwalDokter = () => {
   const [dokterData, setDokterData] = useState({});
   const navigate = useNavigate();
   const [busyHours, setBusyHours] = useState([]);
+  const [nama, setNama] = useState("");
 
   // Fungsi untuk menyimpan data ke local storage
   const saveToLocalStorage = () => {
@@ -19,6 +20,7 @@ const PilihJadwalDokter = () => {
       dokter: dokterData,
       tanggal: selectedDate,
       jadwal: selectedHour,
+      nama: nama,
     };
 
     // Simpan data ke local storage
@@ -93,12 +95,28 @@ const PilihJadwalDokter = () => {
           Pilih Jadwal Booking
         </h1>
       </div>
-      <div className="flex flex-col justify-center  w-[70vw] h-[70vh] md:w-[60vw] md:h-[60vh] lg:w-[60vw] lg:h-[50vh] xl:w-[40vw] xl:h-[50vh] bg-blue-100 rounded-xl px-5">
+      <div className="flex flex-col justify-center  w-[70vw] h-[80vh] md:w-[60vw] md:h-[70vh] lg:w-[60vw] lg:h-[60vh] xl:w-[40vw] xl:h-[60vh] bg-blue-100 rounded-xl px-5">
         <div className="text-zinc-700 text-sm md:text-[14px] lg:text-lg xl:text-xl font-normal mb-8">
-          <div className="flex flex-col justify-center mb-2 w-full h-[60px] lg:h-[80px] xl:h-[120px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg">
+          <div className="flex flex-col justify-center mb-2 w-full h-[60px] lg:h-[80px] xl:h-[120px] rounded-[5px] border-[1px] border-stone-600 bg-stone-100 px-4 text-[12px] lg:text-[16px] xl:text-lg">
             <p>{dokterData.nama}</p>
             <p>Spesialis {dokterData.spesialisasi}</p>
           </div>
+          <label
+            name="nama"
+            className="flex items-center text-sm md:text-md lg:text-lg mb-1"
+          >
+            Nama Pasien
+          </label>
+          <input
+            className="w-full h-[40px] lg:h-[50px] rounded-[5px] border-[1px] border-stone-600 px-4 text-[12px] lg:text-[16px] xl:text-lg"
+            type="text"
+            placeholder="Masukkan Nama Lengkap Pasien"
+            value={nama}
+            onChange={(e) => {
+              setNama(e.target.value);
+              setError("");
+            }}
+          />
           <label
             name="tanggal"
             className="flex items-center text-sm md:text-md lg:text-lg mb-1"
@@ -110,7 +128,7 @@ const PilihJadwalDokter = () => {
             onChange={handleDateChange}
             dateFormat="dd/MM/yyyy"
             placeholderText="Pilih tanggal"
-            className="mb-2 w-full h-[50px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg"
+            className="mb-2 w-full h-[50px] lg:h-[40px] rounded-[5px] border-[1px] border-stone-600 px-4 text-[12px] lg:text-[16px] xl:text-lg"
             minDate={minDate}
           />
           <div>
@@ -126,7 +144,7 @@ const PilihJadwalDokter = () => {
               id="timePicker"
               value={selectedHour}
               onChange={handleHourChange}
-              className="w-full h-[40px] lg:h-[50px] rounded-[5px] border-[1px] border-stone-600 bg-stone-200 px-4 text-[12px] lg:text-[16px] xl:text-lg"
+              className="w-full h-[40px] lg:h-[50px] rounded-[5px] border-[1px] border-stone-600 px-4 text-[12px] lg:text-[16px] xl:text-lg"
             >
               <option value="" disabled hidden>
                 Pilih jam
