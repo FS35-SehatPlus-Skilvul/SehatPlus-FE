@@ -41,7 +41,7 @@ const LandingPage = () => {
   return (
     <div id="home">
       {/* Hero Section */}
-      <div className="w-full  mx-auto mt-16 p-8 flex items-center bg-[#D8EEFE] h-[400px]">
+      <div className="w-full  mx-auto mt-14 p-8 flex items-center bg-[#D8EEFE] h-[400px]">
         <div className="flex-1" data-aos="fade-up" data-aos-duration="2000">
           <h1 className="text-4xl font-bold mb-4">
             Selamat Datang di SehatPlus!
@@ -56,14 +56,18 @@ const LandingPage = () => {
           </Link>
         </div>
         <div className="flex-1 flex justify-end">
-          <img src={hero} className="h-[400px] mt-0" alt="Doctor" />
+          <img
+            src={hero}
+            className="h-[400px] mt-0 hidden sm:block"
+            alt="Doctor"
+          />
         </div>
       </div>
       {/* END OF HERO SECTION */}
 
       {/* Pelayanan Kami */}
       <div className="container mx-auto mt-16 p-8 text-center">
-        <h2 className="text-3xl font-bold mb-8">Pelayanan Kami</h2>
+        <h2 className="text-3xl font-bold mb-8">Layanan Kami</h2>
         <div className="flex flex-wrap -mx-4">
           {/* Kotak Pelayanan 1 */}
           <div
@@ -78,9 +82,9 @@ const LandingPage = () => {
                 className="w-24 h-auto mb-4 mt-10 object-center"
               />
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Konsultasi Online</h3>
+                <h3 className="text-xl font-bold mb-2">Booking Konsultasi Online</h3>
                 <p className="text-gray-700">
-                  Kami menyediakan Pelayanan konsultasi online selama 24 jam.
+                  Kami menyediakan layanan booking konsultasi online.
                 </p>
               </div>
             </div>
@@ -151,15 +155,12 @@ const LandingPage = () => {
           <p className="text-gray-700 dark:text-gray-400 mb-6">
             <span className="font-bold">Dear Sobat Sehat,</span> SehatPlus
             adalah penyedia layanan kesehatan online yang menawarkan solusi
-            kesehatan dan saran kepada lebih dari 30.000 pasien di seluruh
-            Indonesia. Dengan tim dokter dan farmasi berlisensi, SehatPlus
+            kesehatan di Indonesia. Dengan tim dokter berlisensi, SehatPlus
             bertujuan untuk menyediakan layanan konsultasi medis komprehensif
             bagi pasien.
           </p>
           <p className="text-gray-700 dark:text-gray-400 mb-6">
-            Kami hadir dengan layanan yang mencakup konsultasi medis online,
-            pengiriman obat-obatan, serta informasi kesehatan terkini melalui
-            platform kami yang mendukung anda dalam menuju perjalanan hidup
+            Kami hadir dengan layanan yang mencakup booking konsultasi dokter secara online, serta informasi kesehatan terkini yang mendukung anda menuju perjalanan hidup
             sehat yang lebih baik.
           </p>
         </div>
