@@ -1,15 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import logo from '../assets/logo.svg';
 
 function Navbar() {
-  const { isAuthenticated, user, logout } = useContext(AuthContext);
+  const { isAuthenticated, user, logout, setUser } = useContext(AuthContext);
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
 
   const handleLogout = () => {
     logout();
   };
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('https://65632a51ee04015769a6dd6e.mockapi.io/user/users');
+        const userData = await response.json();
+  
+        if (userData.length > 0) {
+          setUser(userData[0]); // Assuming you want the first user from the API
+        }
+  
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setLoading(false);
+      }
+    };
+  
+    if (isAuthenticated && !user?.nama && loading) {
+      fetchUserData();
+    }
+  }, [isAuthenticated, user?.nama, setUser, loading]);  
+
 
   return (
     <>
@@ -29,7 +53,7 @@ function Navbar() {
                   alt="Profile"
                   className="h-8 w-8 rounded-full"
                 />
-                <span>{user.username}</span>
+                <span>{user.nama}</span>
                 <button
                   className="text-blue-700 hover:text-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800"
                   onClick={handleLogout}
@@ -80,7 +104,7 @@ function Navbar() {
                 <li>
                   <Link
                     to="/spesialisasi"
-                    className={`font-bold ${location.pathname === "/konsultasi"
+                    className={`font-bold ${location.pathname.startsWith("/spesialisasi") || location.pathname.startsWith("/pilih-jadwal-dokter") || location.pathname.startsWith("/konfirmasi-janji-temu") || location.pathname.startsWith("/booking-succesfull")
                       ? "text-blue-700"
                       : "text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500"
                       }`}
@@ -119,7 +143,7 @@ function Navbar() {
               <li>
                 <Link
                   to="/artikel"
-                  className={`font-bold ${location.pathname === "/artikel"
+                  className={`font-bold ${location.pathname.startsWith("/artikel") 
                     ? "text-blue-700"
                     : "text-gray-900 hover:text-blue-700 dark:text-white dark:hover:text-blue-500"
                     }`}
