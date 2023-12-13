@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import loginImage from "../assets/Login-image.svg";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../context/AuthContext"; // Sesuaikan dengan lokasi penyimpanan AuthContext
+import { AuthContext } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
@@ -29,18 +29,10 @@ function Login() {
       );
 
       if (user) {
-        // Cek role
-        // const role = user.role;
+        // Log user data to the console
+        console.log("User Data:", user);
 
-        // // Redirect sesuai dengan role
-        // if (role === "pasien") {
-        //   navigate("/");
-        // } else if (role === "dokter") {
-        //   navigate("/dashboard-dokter");
-        // } else if (role === "admin") {
-        //   navigate("/dashboard-admin");
-        // }
-
+        // Redirect to home page
         navigate("/");
 
         // Setelah login, panggil fungsi login dari AuthContext
@@ -72,17 +64,10 @@ function Login() {
       );
 
       if (user) {
-        // Cek role
-        // const role = user.role;
+        // Log user data to the console
+        console.log("User Data:", user);
 
-        // // Redirect sesuai dengan role
-        // if (role === "pasien") {
-        //   navigate("/");
-        // } else if (role === "dokter") {
-        //   navigate("/dashboard-dokter");
-        // } else if (role === "admin") {
-        //   navigate("/dashboard-admin");
-        // }
+        // Redirect to dokter-dashboard page
         navigate("/dokter-dashboard");
 
         // Setelah login, panggil fungsi login dari AuthContext
